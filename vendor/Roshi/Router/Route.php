@@ -89,4 +89,9 @@ class Route
         self::$routes[self::$currentRouteType][self::$currentRouteName]['name'] = $name;
         return $this;
     }
+
+    public function params($params) {
+        self::$routes[self::$currentRouteType][self::$currentRouteName]['params'] = $params;
+        return $this;
+    }
 }
