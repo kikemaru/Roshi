@@ -1,16 +1,18 @@
 <?php
 
 namespace Bot\Controller;
-use Bot\Router\Router;
+//use Bot\Router\Router;
 
 class Controller
 {
 
     protected $bot;
+    protected $params;
 
-    public function __construct($bot = null)
+    public function __construct($bot = null, $params = null)
     {
         $this->bot = $bot;
+        $this->params = $params;
     }
 
     /**

@@ -10,12 +10,14 @@ class Middleware
     protected $method = '';
 
     protected Start $bot;
+    protected $params;
 
-    public function __construct($bot, $route = null)
+    public function __construct($bot, $route = null, $params = null)
     {
         $this->class = $route['class'];
         $this->method = $route['method'];
         $this->bot = $bot;
+        $this->params = $params;
     }
 
 
@@ -25,14 +27,14 @@ class Middleware
             $class = $this->class;
             $method = $this->method;
             $exemp = new $class($this->bot);
-            $exemp->$method();
+            $exemp->$method($this->params);
         } else {
             if ($classController == null) {
                 $exemp = new \App\Bot\Controller\Controller($this->bot);
                 $exemp->index();
             } else {
-                $exemp = new $classController($bot);
-                $exemp->$methodController();
+                $exemp = new $classController($this->bot);
+                $exemp->$methodController($this->params);
             }
         }
     }
